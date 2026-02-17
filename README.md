@@ -1,58 +1,89 @@
-# PyStart
-This project serves as an example for a project using DevContainers
+# Groq Q&A CLI Application
 
-# Setup
-Start by forking the project 
-![](./docs/images/project-fork.png?raw=true)
+This project is based on the provided `pystart` repository template.
 
-Once the project is in your account, there are different ways you can set up this project. We will cover how you can set it up in [GitHub Codespaces](https://github.com/features/codespaces) and in VS Code on your local machine.
+The assignment requirement is to create a Python application (`main.py`) that talks to the Groq API. The user should be able to enter questions, the application must call the Groq API to generate responses, and the program must continue running in a loop until the user types `quit`.
+
+This implementation satisfies all assignment requirements.
+
+---
+
+## Description
+
+This application runs as a command-line interface (CLI).  
+It performs the following steps:
+
+1. Prompts the user to enter a question.
+2. Sends the question to the Groq API.
+3. Prints the AI-generated response.
+4. Repeats the process in a loop.
+5. Stops only when the user types `quit`.
+
+The model used in this project is:
+openai/gpt-oss-120b
+
+--- 
+
+## Requirements
+
+Python 3.9 or higher is required.
+
+Install dependencies using:
+
+```bash
+pip install -r requirements.txt
+```
+The requirements.txt file contains:
+groq
+
+---
+
+## Environment Variable Setup
+
+Before running the program, you must set your Groq API key.
+
+### macOS / Linux
+```bash
+export GROQ_API_KEY="your_api_key_here"
+```
+
+### Windows PowerShell
+```bash
+$env:GROQ_API_KEY="your_api_key_here"
+```
 
 ## GitHub Codespaces
-You can set up this project to develop in [GitHub Codespaces](https://github.com/features/codespaces), where you can code, debug, and run your app remotely in a codespace. A codespace provides a fully configured development environment hosted in the cloud, eliminating the need for local setup. This environment includes your project's dependencies, tools, and extensions, ensuring a consistent and reproducible development experience. It streamlines collaboration by providing real-time editing, integrated version control, and easy access to debugging and testing tools, all while maintaining the security and reliability of your project.
 
-Steps:
+Add a repository secret:
 
-1. Click on the "<> Code" button
-2. Click on the "Codespaces" tab
-3. Click on the "Create codespace on main"
+Name: GROQ_API_KEY
 
-![](./docs/images/pystart.png?raw=true)
+Value: your Groq API key
 
+Then restart the Codespace.
 
-## Locally in VS Code
-You first need to set up your Python development environment. Specifically, this tutorial requires:
-
-Python 3.11 (check the installation guide if you don't have it installed)
-Python extension for VS Code (For additional details on installing extensions, you can read Extension Marketplace).
-
-It is recommended to use conda or env to isolate the python environment:
-- [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) information
-- [venv](https://docs.python.org/3/library/venv.html) information
-
-VS Code should have the following extensions:
-- [ms-python.python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [ms-python.vscode-pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
-- [esbenp.prettier-vscode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-- [ms-python.black-formatter](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter)
-- [charliermarsh.ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
-- [ms-python.debugpy](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
-
-
-## VS Code and DevContainer
-If you prefer to use DevContainer, you just need to install the DevContainer extension and all necessary extensions will be taken care for you.
-Follow the instructions from the [DevContainer site](https://code.visualstudio.com/docs/devcontainers/tutorial).
-
-# Running in Codespaces
-To run the FastAPI server, run the following command below. This command will reload the server as you make changes to the code.
+## How to Run
+```bash
+python main.py
 ```
-uvicorn main:app --reload
+Example session:
+```vbnet
+Groq Chat ready. Type a question, or type "quit" to exit.
+
+You: what is tesla
+AI: Tesla is an American electric vehicle and clean energy company founded in 2003.
+
+You: who founded apple
+AI: Apple was founded by Steve Jobs, Steve Wozniak, and Ronald Wayne in 1976.
+
+You: quit
+Bye!
 ```
 
-Once you run it, you will see a pop-up window that will make your application available to the outside. Click on "Open in browser" button to open in your browser:
-![](./docs/images/running.png?raw=true)
+## Exit Condition
+The program will continue running until the user types:
+```nginx
+quit
+```
+At that point, the application terminates.
 
-If the pop-up dissapear before you can click on it, you can click on the "PORTS" tab nad click on the "Open in browser" button as you hover the URL as shown below:
-![](./docs/images/running-manually.png?raw=true)
-
-After you enable the port to be access via your browser, you will see your browser open to the application. You can now use the URL the browser points to for your API access.
-![](./docs/images/running-browser.png?raw=true)
